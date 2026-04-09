@@ -9,7 +9,7 @@ app.use(express.urlencoded());
 app.use('/api/v1', api);
 
 app.get('/', (req, res) => {
-  res.send('Welcome to Assignment 2 API!!');
+  res.send('Welcome to Assignment 3 API!!');
 });
 
 app.post('/', (req, res) => {

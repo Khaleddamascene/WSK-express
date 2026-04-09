@@ -3,16 +3,33 @@ GET http://127.0.0.1:3000/api/v1/cats
 Accept: application/json
 
 ### Add a new cat
-POST http://127.0.0.1:3000/api/v1/cats
-Content-Type: application/json
 
-{
-  "cat_name": "Vito",
-  "fluffypants": true,
-  "weight": 6,
-  "owner": "Juha",
-  "birthdate": "2007-06-01"
-}
+POST http://127.0.0.1:3000/api/v1/cats
+Content-Type: multipart/form-data; boundary=MyBoundary
+
+--MyBoundary
+Content-Disposition: form-data; name="cat_name"
+
+Misu
+--MyBoundary
+Content-Disposition: form-data; name="weight"
+
+6
+--MyBoundary
+Content-Disposition: form-data; name="owner"
+
+3602
+--MyBoundary
+Content-Disposition: form-data; name="birthdate"
+
+2023-10-08
+--MyBoundary
+Content-Disposition: form-data; name="cat"; filename="dog.jpg"
+Content-Type: image/jpeg
+
+< ./dog.jpg
+--MyBoundary--
+
 
 ### Get cat by ID
 GET http://127.0.0.1:3000/api/v1/cats/9592
