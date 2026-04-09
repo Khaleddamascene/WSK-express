@@ -1,28 +1,21 @@
+import api from './api/index.js';
 import express from 'express';
+
 const app = express();
-const PORT = 3000;
 
-// Root route
+app.use(express.json());
+app.use(express.urlencoded());
+
+app.use('/api/v1', api);
+
 app.get('/', (req, res) => {
-  res.json({message: 'Welcome to Assignment 1 API'});
+  res.send('Welcome to Assignment 2 API!!');
 });
 
-// Cats API
-app.get('/api/v1/cats', (req, res) => {
-  res.json({
-    cat_id: 1,
-    name: 'Whiskers',
-    birthdate: '2021-05-12',
-    weight: 4.2,
-    owner: 'Alice',
-    image: 'https://loremflickr.com/320/240/cat',
-  });
+app.post('/', (req, res) => {
+  console.log(req.body);
+
+  res.json({ok: true, data: req.body});
 });
 
-// Serve static files from public folder
-app.use('/public', express.static('public'));
-
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+export default app;

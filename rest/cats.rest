@@ -1,0 +1,30 @@
+### Get all cats
+GET http://127.0.0.1:3000/api/v1/cats
+Accept: application/json
+
+### Add a new cat
+POST http://127.0.0.1:3000/api/v1/cats
+Content-Type: application/json
+
+{
+  "cat_name": "Vito",
+  "fluffypants": true,
+  "weight": 6,
+  "owner": "Juha",
+  "birthdate": "2007-06-01"
+}
+
+### Get cat by ID
+GET http://127.0.0.1:3000/api/v1/cats/9592
+Accept: application/json
+
+### Update cat info
+PUT http://127.0.0.1:3000/api/v1/cats/9592
+Content-Type: application/json
+
+{
+  "cat_name": "Don Corleone"
+}
+
+### Delete cat
+DELETE http://127.0.0.1:3000/api/v1/cats/9592

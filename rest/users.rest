@@ -1,0 +1,30 @@
+### Get all users
+GET http://127.0.0.1:3000/api/v1/users
+Accept: application/json
+
+### Add a new user
+POST http://127.0.0.1:3000/api/v1/users
+Content-Type: application/json
+
+{
+  "username": "Khaled",
+  "name": "Khaled",
+  "email": "maraim@metropolia.fi",
+  "role": "student / failed comedian",
+  "password": "tähän oman pankin salasana"
+}
+
+### Get user by ID
+GET http://127.0.0.1:3000/api/v1/users/3614
+Accept: application/json
+
+### Update user info
+PUT http://127.0.0.1:3000/api/v1/users/3614
+Content-Type: application/json
+
+{
+  "username": "Don Corleone"
+}
+
+### Delete user
+DELETE http://127.0.0.1:3000/api/v1/users/3614
