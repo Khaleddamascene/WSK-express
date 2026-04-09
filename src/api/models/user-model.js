@@ -1,35 +1,59 @@
-// mock data
-const userItems = [
-  {
-    user_id: 3609,
-    name: 'John Doe',
-    username: 'johndoe',
-    email: 'john@metropolia.fi',
-    role: 'user',
-    password: 'password',
-  },
-];
+import promisePool from '../../utils/database.js';
 
-const listAllUsers = () => {
-  return userItems;
+const listAllUsers = async () => {
+  const [rows] = await promisePool.query('SELECT * FROM wsk_users');
+  // console.log('rows', rows);
+  return rows;
 };
 
-const findUserById = (id) => {
-  return userItems.find((item) => item.user_id == id);
+const findUserById = async (id) => {
+  const [rows] = await promisePool.execute(
+    'SELECT * FROM wsk_users WHERE user_id = ?',
+    [id]
+  );
+  // console.log('rows', rows);
+  if (rows.length === 0) {
+    return false;
+  }
+  return rows[0];
 };
 
-const addUser = (user) => {
-  const {name, username, email, role, password} = user;
-  const newId = userItems[0].user_id + 1;
-  userItems.unshift({
-    user_id: newId,
-    username,
-    name,
-    email,
-    role,
-    password,
-  });
-  return {user_id: newId};
+const addUser = async (user) => {
+  const {username, email, name, password} = user;
+  const sql = `INSERT INTO wsk_users (username, email, name, password)
+               VALUES (?, ?, ?, ?)`;
+  const params = [username, email, name, password];
+  const [result] = await promisePool.execute(sql, params);
+  console.log('result', result);
+  if (result.affectedRows === 0) {
+    return false;
+  }
+  return {user_id: result.insertId};
 };
 
-export {listAllUsers, findUserById, addUser};
+const modifyUser = async (user, id) => {
+  const sql = promisePool.format(`UPDATE wsk_users SET ? WHERE user_id = ?`, [
+    user,
+    id,
+  ]);
+  const [result] = await promisePool.execute(sql);
+  console.log('result', result);
+  if (result.affectedRows === 0) {
+    return false;
+  }
+  return {message: 'success'};
+};
+
+const removeUser = async (id) => {
+  const [rows] = await promisePool.execute(
+    'DELETE FROM wsk_users WHERE user_id = ?',
+    [id]
+  );
+  console.log('rows', rows);
+  if (rows.affectedRows === 0) {
+    return false;
+  }
+  return {message: 'success'};
+};
+
+export {listAllUsers, findUserById, addUser, modifyUser, removeUser};
