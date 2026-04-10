@@ -1,11 +1,17 @@
-import {addCat, findCatById, listAllCats} from '../models/cat-model.js';
+import {
+  addCat,
+  findCatById,
+  listAllCats,
+  modifyCat,
+  removeCat,
+} from '../models/cat-model.js';
 
-const getCat = (req, res) => {
-  res.json(listAllCats());
+const getCat = async (req, res) => {
+  res.json(await listAllCats());
 };
 
-const getCatById = (req, res) => {
-  const cat = findCatById(req.params.id);
+const getCatById = async (req, res) => {
+  const cat = await findCatById(req.params.id);
   if (cat) {
     res.json(cat);
   } else {
@@ -13,11 +19,11 @@ const getCatById = (req, res) => {
   }
 };
 
-const postCat = (req, res) => {
+const postCat = async (req, res) => {
   console.log('postCat', req.file);
   // lisätään bodyyn filename
   req.body.filename = req.file.filename;
-  const result = addCat(req.body);
+  const result = await addCat(req.body);
   if (result.cat_id) {
     res.status(201);
     res.json({message: 'New cat added.', result});
@@ -26,19 +32,26 @@ const postCat = (req, res) => {
   }
 };
 
-// PUT /api/v1/cat/:id - return hard coded json response:
-// {message: 'Cat item updated.'}
+// PUT /api/v1/cats/:id
 
-const putCat = (req, res) => {
-  // not implemented in this example, this is homework
-  //res.sendStatus(200);
-  res.json({message: 'Cat item updated.'});
+const putCat = async (req, res) => {
+  // put cat, use modifyCat function from model, pass req.body and req.params.id
+  const result = await modifyCat(req.body, req.params.id);
+  if (result.message === 'success') {
+    res.json({message: 'Cat item updated.'});
+  } else {
+    res.sendStatus(400);
+  }
 };
 
-const deleteCat = (req, res) => {
-  // not implemented in this example, this is homework
-  //res.sendStatus(200);
-  res.json({message: 'Cat item deleted.'});
+const deleteCat = async (req, res) => {
+  // delete cat, use removeCat function from model, pass req.params.id
+  const result = await removeCat(req.params.id);
+  if (result.message === 'success') {
+    res.json({message: 'Cat item deleted.'});
+  } else {
+    res.sendStatus(400);
+  }
 };
 
 export {getCat, getCatById, postCat, putCat, deleteCat};

@@ -18,7 +18,7 @@ Content-Disposition: form-data; name="weight"
 --MyBoundary
 Content-Disposition: form-data; name="owner"
 
-3602
+38
 --MyBoundary
 Content-Disposition: form-data; name="birthdate"
 
@@ -32,11 +32,11 @@ Content-Type: image/jpeg
 
 
 ### Get cat by ID
-GET http://127.0.0.1:3000/api/v1/cats/9592
+GET http://127.0.0.1:3000/api/v1/cats/56
 Accept: application/json
 
 ### Update cat info
-PUT http://127.0.0.1:3000/api/v1/cats/9592
+PUT http://127.0.0.1:3000/api/v1/cats/56
 Content-Type: application/json
 
 {
@@ -44,4 +44,5 @@ Content-Type: application/json
 }
 
 ### Delete cat
-DELETE http://127.0.0.1:3000/api/v1/cats/9592
+
+DELETE http://127.0.0.1:3000/api/v1/cats/55
