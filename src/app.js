@@ -9,7 +9,7 @@ const app = express(); // FIRST create app
 app.use(cors()); //  THEN use it
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
 
 app.use('/api/v1', api);
 
@@ -23,5 +23,5 @@ app.post('/', (req, res) => {
 });
 
 app.use(errorHandler);
-
+app.use('/docs', express.static('docs'));
 export default app;
