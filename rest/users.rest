@@ -7,12 +7,13 @@ POST http://127.0.0.1:3000/api/v1/users
 Content-Type: application/json
 
 {
-  "username": "MaraiKhaled",
-  "name": "MaraiKhaled",
-  "email": "maraim@metropolia.fi",
+  "username": "joha123",
+  "name": "",
+  "email": "john@test.com",
   "role": "student / failed comedian",
-  "password": "123456"
+  "password": "123"
 }
+
 
 ### Get user by ID
 GET http://127.0.0.1:3000/api/v1/users/53

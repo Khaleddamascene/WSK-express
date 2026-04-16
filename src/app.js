@@ -2,6 +2,8 @@ import cors from 'cors';
 import api from './api/index.js';
 import express from 'express';
 
+import {errorHandler} from './middlewares/error-handlers.js';
+
 const app = express(); // FIRST create app
 
 app.use(cors()); //  THEN use it
@@ -19,5 +21,7 @@ app.post('/', (req, res) => {
   console.log(req.body);
   res.json({ok: true, data: req.body});
 });
+
+app.use(errorHandler);
 
 export default app;
