@@ -45,4 +45,7 @@ Content-Type: application/json
 
 ### Delete cat
 
-DELETE http://127.0.0.1:3000/api/v1/cats/55
+DELETE http://127.0.0.1:3000/api/v1/cats/56
+
+
+

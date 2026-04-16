@@ -6,21 +6,27 @@ import {
   putCat,
   deleteCat,
 } from '../controllers/cat-controller.js';
+
 import multer from 'multer';
 const upload = multer({dest: 'uploads/'});
 
 import {createThumbnail} from '../../middelwares/upload.js';
-// basic config (auto filename hashing)
+import {authenticateToken} from '../../middelwares/authentication.js';
 
 const catRouter = express.Router();
+
 // /api/v1/cats
 catRouter
   .route('/')
   .get(getCat)
-  .post(upload.single('cat'), createThumbnail, postCat);
-// route with middleware
-//catRouter.route('/').get(getCat).post(upload.single('cat'), postCat);
+  .post(authenticateToken, upload.single('cat'), createThumbnail, postCat);
 
-catRouter.route('/:id').get(getCatById).put(putCat).delete(deleteCat);
+catRouter.route('/:id').get(getCatById);
+
+//  PROTECTED ROUTES
+catRouter
+  .route('/:id')
+  .put(authenticateToken, putCat)
+  .delete(authenticateToken, deleteCat);
 
 export default catRouter;

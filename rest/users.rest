@@ -7,19 +7,19 @@ POST http://127.0.0.1:3000/api/v1/users
 Content-Type: application/json
 
 {
-  "username": "Khaled",
-  "name": "Khaled",
+  "username": "MaraiKhaled",
+  "name": "MaraiKhaled",
   "email": "maraim@metropolia.fi",
   "role": "student / failed comedian",
-  "password": "tähän oman pankin salasana"
+  "password": "123456"
 }
 
 ### Get user by ID
-GET http://127.0.0.1:3000/api/v1/users/3614
+GET http://127.0.0.1:3000/api/v1/users/53
 Accept: application/json
 
 ### Update user info
-PUT http://127.0.0.1:3000/api/v1/users/3614
+PUT http://127.0.0.1:3000/api/v1/users/53
 Content-Type: application/json
 
 {
@@ -27,4 +27,4 @@ Content-Type: application/json
 }
 
 ### Delete user
-DELETE http://127.0.0.1:3000/api/v1/users/3614
+DELETE http://127.0.0.1:3000/api/v1/users/51

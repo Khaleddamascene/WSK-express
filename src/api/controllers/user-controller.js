@@ -1,3 +1,17 @@
+import bcrypt from 'bcrypt';
+const postUser = async (req, res) => {
+  // hash password before saving
+  req.body.password = bcrypt.hashSync(req.body.password, 10);
+
+  const result = await addUser(req.body);
+  if (result.user_id) {
+    res.status(201);
+    res.json({message: 'New user added.', result});
+  } else {
+    res.sendStatus(400);
+  }
+};
+
 import {
   addUser,
   findUserById,
@@ -18,7 +32,7 @@ const getUserById = async (req, res) => {
     res.sendStatus(404);
   }
 };
-
+/*
 const postUser = async (req, res) => {
   const result = await addUser(req.body);
   if (result.user_id) {
@@ -27,7 +41,7 @@ const postUser = async (req, res) => {
   } else {
     res.sendStatus(400);
   }
-};
+};*/
 
 // PUT /api/v1/users/:id - return hard coded json response:
 // {message: 'user item updated.'}
