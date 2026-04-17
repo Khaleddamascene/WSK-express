@@ -57,10 +57,12 @@ const removeUser = async (id) => {
 };
 
 const findUserByUsername = async (username) => {
+  console.log('db username', username);
   const [rows] = await promisePool.execute(
     'SELECT * FROM wsk_users WHERE username = ?',
     [username]
   );
+  console.log(rows);
   if (rows.length === 0) {
     return false;
   }

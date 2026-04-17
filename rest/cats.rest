@@ -2,9 +2,21 @@
 GET http://127.0.0.1:3000/api/v1/cats
 Accept: application/json
 
+### Post login
+# @name login
+POST http://localhost:3000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "Marai",
+  "password": "123456"
+}
+
+
 ### Add a new cat
 
 POST http://127.0.0.1:3000/api/v1/cats
+Authorization: Bearer {{login.response.body.token}}
 Content-Type: multipart/form-data; boundary=MyBoundary
 
 --MyBoundary
@@ -45,7 +57,7 @@ Content-Type: application/json
 
 ### Delete cat
 
-DELETE http://127.0.0.1:3000/api/v1/cats/56
+DELETE http://127.0.0.1:3000/api/v1/cats/57
 
 
 
