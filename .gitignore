@@ -1,5 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,node,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,node,visualstudiocode
+/docs
+
+uploads/*
+# except one (empty) file to have the folder in version control
+!uploads/.gitkeep
 
 ### macOS ###
 # General
