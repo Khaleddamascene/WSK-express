@@ -8,6 +8,7 @@ app.use(cors()); //  THEN use it
 
 app.use(express.json());
 app.use(express.urlencoded());
+app.use('/uploads', express.static('uploads'));
 
 app.use('/api/v1', api);
 
