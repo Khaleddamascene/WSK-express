@@ -1,7 +1,4 @@
 {
-<<<<<<< HEAD
-  "liveServer.settings.port": 5501
-=======
   "sqltools.connections": [
     {
       "mysqlOptions": {
@@ -19,5 +16,4 @@
       "password": "1234"
     }
   ]
->>>>>>> Assignment6
 }
