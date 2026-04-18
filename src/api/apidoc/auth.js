@@ -3,7 +3,7 @@
  * @apiName Login
  * @apiGroup Auth
  *
- * @apiBody {String} username Username  Test Khaled Marai
+ * @apiBody {String} username Username  Test Khaled Marai aaa
  * @apiBody {String} password Password
  *
  * @apiSuccess {Object} user User object
