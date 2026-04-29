@@ -1,5 +1,5 @@
 import js from '@eslint/js';
-import globals from 'globals';
+import globals, {jest, node} from 'globals';
 import {defineConfig} from 'eslint/config';
 
 export default defineConfig([
@@ -8,5 +8,9 @@ export default defineConfig([
     plugins: {js},
     extends: ['js/recommended'],
     languageOptions: {globals: globals.node},
+    env: {
+      jest: true,
+      node: true,
+    },
   },
 ]);
